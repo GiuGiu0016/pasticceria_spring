@@ -71,5 +71,18 @@ public class OrdinazioneController {
         model.addAttribute("ordinazione", ordinazioneRepository.findAll());
         return "index";
     }
-	
+    
+    @PostMapping("/check/{id}")
+    public String confermaConsegna(@PathVariable("id") long id,@RequestBody  Ordinazione ordinazione, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+        	ordinazione.setId(id);
+            return "index";
+        }
+       
+        ordinazione.setVerificaConsegna(true);
+        ordinazioneRepository.save(ordinazione);
+        model.addAttribute("ordinazione", ordinazioneRepository.findAll());
+        return "index";
+    }
+     
 }

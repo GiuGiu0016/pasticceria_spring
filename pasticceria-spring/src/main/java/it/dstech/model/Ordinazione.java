@@ -30,8 +30,6 @@ public class Ordinazione {
 	
 	public Ordinazione() {}
 	
-	
-
 	public Ordinazione(long id, boolean verificaConsegna, Cliente cliente, List<Dolce> listaDolci, String consegna,
 			double costoOrdinazione, int sconto) {
 		super();
