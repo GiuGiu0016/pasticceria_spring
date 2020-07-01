@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Dolce {
@@ -15,6 +16,7 @@ public class Dolce {
 	
 	private String nome;
 	
+	@OneToOne
 	private Ricetta ricetta;
 	
 	private int quantita;

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 //Ricetta (nome, tempo di realizzazione (HH:mm), difficoltà(1-5), ingredienti[], descrizione, costo*)
 
@@ -23,6 +24,7 @@ public class Ricetta {
 	
 	private int difficolta;
 	
+	@OneToMany
 	private List<Ingrediente> listaIngredienti;
 	
 	private String descrizione;

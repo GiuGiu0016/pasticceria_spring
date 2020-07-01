@@ -38,14 +38,14 @@ public class ClienteController {
     
 //  Modifica l'cliente
     
-    @GetMapping("/edit/{id}")
+    @GetMapping("/editCliente/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
     	Cliente cliente = clienteRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid cliente Id:" + id));
         model.addAttribute("cliente", cliente);
         return "update-cliente";
     }
     
-    @PostMapping("/update/{id}")
+    @PostMapping("/updateCliente/{id}")
     public String updateCliente(@PathVariable("id") long id,@RequestBody  Cliente cliente, BindingResult result, Model model) {
         if (result.hasErrors()) {
         	cliente.setId(id);
@@ -59,7 +59,7 @@ public class ClienteController {
     
 //  Elimina l'ingrediente
     
-    @GetMapping("/delete/{id}")
+    @GetMapping("/deleteCliente/{id}")
     public String deleteCliente(@PathVariable("id") long id, Model model) {
     	Cliente cliente = clienteRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid cliente Id:" + id));
         clienteRepository.delete(cliente);

@@ -38,14 +38,14 @@ public class DolceController {
     
 //  Modifica l'cliente
     
-    @GetMapping("/edit/{id}")
+    @GetMapping("/editDolce/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
     	Dolce dolce = dolceRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid dolce Id:" + id));
         model.addAttribute("dolce", dolce);
         return "update-dolce";
     }
     
-    @PostMapping("/update/{id}")
+    @PostMapping("/updateDolce/{id}")
     public String updateDolce(@PathVariable("id") long id,@RequestBody  Dolce dolce, BindingResult result, Model model) {
         if (result.hasErrors()) {
         	dolce.setId(id);
@@ -59,7 +59,7 @@ public class DolceController {
     
 //  Elimina l'ingrediente
     
-    @GetMapping("/delete/{id}")
+    @GetMapping("/deleteDolce/{id}")
     public String deleteDolce(@PathVariable("id") long id, Model model) {
     	Dolce dolce = dolceRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid dolce Id:" + id));
         dolceRepository.delete(dolce);

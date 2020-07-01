@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Ordinazione {
@@ -20,6 +21,7 @@ public class Ordinazione {
 	@ManyToOne
 	private Cliente cliente;
 	
+	@OneToMany
 	private List<Dolce> listaDolci;
 	
 	private String consegna;

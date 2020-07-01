@@ -37,14 +37,14 @@ public class IngredienteController {
     
 //  Modifica l'ingrediente
     
-    @GetMapping("/edit/{id}")
+    @GetMapping("/editIngr/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
     	Ingrediente ingrediente = ingredienteRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid ingrediente Id:" + id));
         model.addAttribute("ingrediente", ingrediente);
         return "update-ingrediente";
     }
     
-    @PostMapping("/update/{id}")
+    @PostMapping("/updateIngr/{id}")
     public String updateIngrediente(@PathVariable("id") long id,@RequestBody  Ingrediente ingrediente, BindingResult result, Model model) {
         if (result.hasErrors()) {
         	ingrediente.setId(id);
@@ -58,7 +58,7 @@ public class IngredienteController {
     
 //  Elimina l'ingrediente
     
-    @GetMapping("/delete/{id}")
+    @GetMapping("/deleteIngr/{id}")
     public String deleteIngrediente(@PathVariable("id") long id, Model model) {
         Ingrediente ingrediente = ingredienteRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid ingrediente Id:" + id));
         ingredienteRepository.delete(ingrediente);

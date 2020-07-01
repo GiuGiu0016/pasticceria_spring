@@ -51,14 +51,14 @@ public class OrdinazioneController {
     
 //  Modifica l'ordinazione
     
-    @GetMapping("/edit/{id}")
+    @GetMapping("/editOrdin/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
     	Ordinazione ordinazione = ordinazioneRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid ordinazione Id:" + id));
         model.addAttribute("ordinazione", ordinazione);
         return "update-ordinazione";
     }
     
-    @PostMapping("/update/{id}")
+    @PostMapping("/updateOrdin/{id}")
     public String updateOrdinazione(@PathVariable("id") long id,@RequestBody  Ordinazione ordinazione, BindingResult result, Model model) {
         if (result.hasErrors()) {
         	ordinazione.setId(id);
@@ -72,7 +72,7 @@ public class OrdinazioneController {
     
 //  Elimina l'ingrediente
     
-    @GetMapping("/delete/{id}")
+    @GetMapping("/deleteOrdin/{id}")
     public String deleteOrdinazione(@PathVariable("id") long id, Model model) {
     	Ordinazione ordinazione = ordinazioneRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid ordinazione Id:" + id));
         ordinazioneRepository.delete(ordinazione);

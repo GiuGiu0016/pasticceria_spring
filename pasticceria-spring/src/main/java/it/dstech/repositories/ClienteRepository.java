@@ -10,6 +10,6 @@ import it.dstech.model.Cliente;
 @Repository
 public interface ClienteRepository extends CrudRepository<Cliente, Long> {
 
-	List<Cliente> findByName(String nome);
+	List<Cliente> findByNome(String nome);
 
 }

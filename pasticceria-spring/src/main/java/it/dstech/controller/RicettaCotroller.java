@@ -53,14 +53,14 @@ public class RicettaCotroller {
     
 //  Modifica l'ricetta
     
-    @GetMapping("/edit/{id}")
+    @GetMapping("/editRicetta/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
     	Ricetta ricetta = ricettaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid ricetta Id:" + id));
         model.addAttribute("ricetta", ricetta);
         return "update-ricetta";
     }
     
-    @PostMapping("/update/{id}")
+    @PostMapping("/updateRicetta/{id}")
     public String updateDolce(@PathVariable("id") long id,@RequestBody  Ricetta ricetta, BindingResult result, Model model) {
         if (result.hasErrors()) {
         	ricetta.setId(id);
@@ -74,7 +74,7 @@ public class RicettaCotroller {
     
 //  Elimina l'ricetta
     
-    @GetMapping("/delete/{id}")
+    @GetMapping("/deleteRicetta/{id}")
     public String deleteDolce(@PathVariable("id") long id, Model model) {
     	Ricetta ricetta = ricettaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid dolce Id:" + id));
         ricettaRepository.delete(ricetta);
