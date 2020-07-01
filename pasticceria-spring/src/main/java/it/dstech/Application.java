@@ -10,10 +10,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication 
 @EnableAutoConfiguration
-@ComponentScan(basePackages={"it.formazione.dstech.thymeleaf"})
-@EnableJpaRepositories(basePackages="it.formazione.dstech.thymeleaf.repositories")
+@ComponentScan(basePackages={"it.dstech"})
+@EnableJpaRepositories(basePackages="it.dstech.repositories")
 @EnableTransactionManagement
-@EntityScan(basePackages="it.formazione.dstech.thymeleaf.entities")
+@EntityScan(basePackages="it.dstech.model")
 public class Application {
 
     public static void main(String[] args) {
