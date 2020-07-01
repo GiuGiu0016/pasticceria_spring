@@ -1,10 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
+
+<h3><a href="addingrediente">Nuovo ingrediente</a></h3>
+<h3><a href="addricetta">Nuova ricetta</a></h3>
+<h3><a href="adddolce">Nuovo dolce</a></h3>
+
+<h3>Ordinazioni da consegnare</h3><br>
+	 <table class="table table-striped table-responsive-md">
+                            <thead>
+                                <tr>
+                                    <th>Cliente</th>
+                                    <th>Dolce/i</th>
+                                    <th>Data consegna</th>
+                                    <th>costo</th>
+                                    <th>sconto</th> 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="ordinazione : ${ordinazione}">
+                                    <td th:text="${ordinazione.cliente}"></td>
+                                    <td th:text="${ordinazione.listaDolci }"></td>
+                                    <td th:text="${ordinazione.costoOrdinazione}"></td>
+                                    <td th:text="${ordinazione.sconto}"></td>
+                                    <td><a th:href="@{/edit/{id}(id=${ordinazione.id})}" class="btn btn-primary"><i class="fas fa-ordinazione-edit ml-2"></i></a></td>
+                                    <td><a th:href="@{/delete/{id}(id=${ordinazione.id})}" class="btn btn-primary"><i class="fas fa-ordinazione-times ml-2"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table><br>
+                        
+                        
+                        <h3>Ordinazioni Passate</h3><br>
+	 <table class="table table-striped table-responsive-md">
+                            <thead>
+                                <tr>
+                                    <th>Cliente</th>
+                                    <th>Dolce/i</th>
+                                    <th>Data consegna</th>
+                                    <th>costo</th>
+                                    <th>sconto</th> 
+                                </tr>
+                            </thead>
+                            <tbody>
+                            
+                                <tr th:each="ordinazione : ${ordinazione}">
+                                <c:if test="${user.age ge 40}">
+                                
+                                
+                                
+                                    <td th:text="${ordinazione.cliente}"></td>
+                                    <td th:text="${ordinazione.listaDolci }"></td>
+                                    <td th:text="${ordinazione.costoOrdinazione}"></td>
+                                    <td th:text="${ordinazione.sconto}"></td>
+                                    <td><a th:href="@{/edit/{id}(id=${ordinazione.id})}" class="btn btn-primary"><i class="fas fa-ordinazione-edit ml-2"></i></a></td>
+                                    <td><a th:href="@{/delete/{id}(id=${ordinazione.id})}" class="btn btn-primary"><i class="fas fa-ordinazione-times ml-2"></i></a></td>
+                                </c:if>
+                                </tr>
+                            </tbody>
+                        </table><br>
 
 </body>
 </html>

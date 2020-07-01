@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import it.dstech.model.Dolce;
 import it.dstech.model.Ordinazione;
@@ -21,8 +22,15 @@ public class OrdinazioneController {
 	
 //	Registrazione Ordinazione e salvataggio nel repository.
 	
-	@GetMapping("registraOrdinazione")
-	public String registraOrdinazioneForm(Ordinazione ordinazione) {
+	@RequestMapping("/")
+	public String toIndex(Ordinazione ordinazione, BindingResult result, Model model) {
+		 model.addAttribute("ordinazione", ordinazioneRepository.findAll());
+		return "index";
+	}
+	
+	@GetMapping("/registraOrdinazione")
+	public String registraOrdinazioneForm(Model model) {
+		
 		return "add-ordinazione";
 	}
 	
@@ -84,5 +92,5 @@ public class OrdinazioneController {
         model.addAttribute("ordinazione", ordinazioneRepository.findAll());
         return "index";
     }
-     
+    
 }

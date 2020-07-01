@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import it.dstech.model.Ingrediente;
 import it.dstech.model.Ricetta;
+import it.dstech.repositories.IngredienteRepository;
 import it.dstech.repositories.RicettaRepository;
 
 @Controller
@@ -19,9 +20,12 @@ public class RicettaCotroller {
 	@Autowired
 	private RicettaRepository ricettaRepository;
 	
+	@Autowired
+	private IngredienteRepository ingredienteRepository; 
+	
 //	Registrazione ricetta e salvataggio nel repository.
 	
-	@GetMapping("registraRicetta")
+	@GetMapping("/registraRicetta")
 	public String registraRicettaForm(Ricetta ricetta) {
 		return "add-ricetta";
 	}
@@ -33,7 +37,13 @@ public class RicettaCotroller {
         }
         double costo = 0;
         for (Ingrediente ingrediente : ricetta.getListaIngredienti()) {
-			costo += ingrediente.getCosto();
+        	for (Ingrediente ingredienteRepo : ingredienteRepository.findAll()) {
+        		if(ingrediente.getNome().equals(ingredienteRepo.getNome())) {
+        			costo += ingrediente.getCosto();
+        		}else {
+        			return "add-ingrediente";
+        		}
+        	}
 		}
         ricetta.setCostoRicetta((costo*110)/100);
         ricettaRepository.save(ricetta);
@@ -71,5 +81,7 @@ public class RicettaCotroller {
         model.addAttribute("ricetta", ricettaRepository.findAll());
         return "index";
     }
+    
+    
 	
 }

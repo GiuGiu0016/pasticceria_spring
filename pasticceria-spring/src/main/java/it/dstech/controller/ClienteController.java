@@ -21,7 +21,7 @@ public class ClienteController {
 	
 //	Registrazione cliente e salvataggio nel repository.
 	
-	@GetMapping("registraCliente")
+	@GetMapping("/registraCliente")
 	public String registraClienteForm(Cliente cliente) {
 		return "add-cliente";
 	}
