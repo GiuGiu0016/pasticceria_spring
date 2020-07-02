@@ -30,7 +30,7 @@ public class OrdinazioneController {
 	
 	@GetMapping("/registraOrdinazione")
 	public String registraOrdinazioneForm(Model model) {
-		
+		model.addAttribute("ordinazione", new Ordinazione());
 		return "add-ordinazione";
 	}
 	
