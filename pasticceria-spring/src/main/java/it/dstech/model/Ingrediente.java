@@ -14,7 +14,7 @@ public class Ingrediente {
 	
 	private String nome;
 	
-	private double costoIng;
+	private double costoing;
 	
 	
 	public Ingrediente() {}
@@ -23,7 +23,7 @@ public class Ingrediente {
 	public Ingrediente(long id, String nome, double costo) {
 		this.id = id;
 		this.nome = nome;
-		this.costoIng = costo;
+		this.costoing = costo;
 	}
 
 
@@ -48,18 +48,18 @@ public class Ingrediente {
 
 
 	public double getCosto() {
-		return costoIng;
+		return costoing;
 	}
 
 
 	public void setCosto(double costo) {
-		this.costoIng = costo;
+		this.costoing = costo;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Ingrediente [id=" + id + ", nome=" + nome + ", costo=" + costoIng + "]";
+		return "Ingrediente [id=" + id + ", nome=" + nome + ", costo=" + costoing + "]";
 	}
 	
 	

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import it.dstech.model.Cliente;
 import it.dstech.repositories.ClienteRepository;
@@ -20,6 +21,11 @@ public class ClienteController {
 	private ClienteRepository clienteRepository;
 	
 //	Registrazione cliente e salvataggio nel repository.
+	
+	@RequestMapping("/toAmm")
+	public String toIndexAmm() {
+		 return "index-amm";
+	}
 	
 	@GetMapping("/registraCliente")
 	public String registraClienteForm(Cliente cliente) {
