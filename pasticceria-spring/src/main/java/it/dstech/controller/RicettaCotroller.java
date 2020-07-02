@@ -27,13 +27,28 @@ public class RicettaCotroller {
 	
 	@GetMapping("/registraRicetta")
 	public String registraRicettaForm(Model model) {
-		model.addAttribute("ingrediente", new Ricetta());
+		model.addAttribute("listaIngredienti", ingredienteRepository.findAll());
+		model.addAttribute("ricetta", new Ricetta());
 		return "add-ricetta";
+	}
+	
+	@GetMapping("/addIngrediente")
+	public String addIngrediente(Model model) {
+		model.addAttribute("ingrediente", new Ingrediente());
+		return "add-ingrediente";
+	}
+	
+	
+	@GetMapping(value = "/checkedIngrediente")
+	public String checkedIngrediente(Model model) {
+	    boolean checked = false;
+	    model.addAttribute("checked", checked);
+	    return "sample-checkbox";
 	}
 	
     @PostMapping("/addricetta")
     public String addRicetta(Ricetta ricetta, BindingResult result, Model model) {
-        if (result.hasErrors()) {
+    	if (result.hasErrors()) {
             return "add-ricetta";
         }
         double costo = 0;

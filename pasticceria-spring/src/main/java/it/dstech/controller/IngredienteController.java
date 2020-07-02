@@ -23,13 +23,13 @@ public class IngredienteController {
 	@GetMapping("/registraIngrediente")
 	public String registraIngredienteForm(Model model) {
         model.addAttribute("ingrediente", new Ingrediente());
-		return "add-ingrediente";
+		return "create-ingrediente";
 	}
 	
-    @PostMapping("/addingrediente")
+    @PostMapping("/createingrediente")
     public String addIngrediente(Ingrediente ingrediente, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "add-ingrediente";
+            return "create-ingrediente";
         }
         ingredienteRepository.save(ingrediente);
         model.addAttribute("ingrediente", ingredienteRepository.findAll());
