@@ -26,7 +26,8 @@ public class RicettaCotroller {
 //	Registrazione ricetta e salvataggio nel repository.
 	
 	@GetMapping("/registraRicetta")
-	public String registraRicettaForm(Ricetta ricetta) {
+	public String registraRicettaForm(Model model) {
+		model.addAttribute("ingrediente", new Ricetta());
 		return "add-ricetta";
 	}
 	
