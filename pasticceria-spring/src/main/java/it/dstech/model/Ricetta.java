@@ -106,5 +106,5 @@ public class Ricetta {
 				+ ", listaIngredienti=" + listaIngredienti + ", descrizione=" + descrizione + ", costoRicetta="
 				+ costoRicetta + "]";
 	}
-
+	
 }

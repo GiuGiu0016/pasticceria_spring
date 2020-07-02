@@ -16,13 +16,14 @@
                 <div class="col-md-6">
                     <form action="#" th:action="@{/addingrediente}" th:object="${ingrediente}" method="post">
                         <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="nome" class="col-form-label">Nome</label>
-                                <input type="text" th:field="*{nome}"  id="nome" placeholder="Nome">
-                            </div>
+<!--                             <div class="form-group col-md-6"> -->
+<!--                                 <label for="nome" class="col-form-label">Nome</label> -->
+<!--                                 <input type="text" id="nome" placeholder="Nome"> -->
+<!--                             </div> -->
+                           
                             <div class="form-group col-md-6">
                                 <label for="costoing" class="col-form-label">Costo ingrediente</label>
-                                <input type="text" th:field="*{costoing}"  id="costoing" placeholder="costoing">
+                                <input th:field="*{costoing}"  id="costoing" placeholder="costoing">
                             </div>
                         </div>
                         <div class="row">

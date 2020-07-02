@@ -17,6 +17,16 @@ public class Ingrediente {
 	private double costoing;
 	
 	
+	public double getCostoing() {
+		return costoing;
+	}
+
+
+	public void setCostoing(double costoing) {
+		this.costoing = costoing;
+	}
+
+
 	public Ingrediente() {}
 
 
@@ -47,14 +57,7 @@ public class Ingrediente {
 	}
 
 
-	public double getCosto() {
-		return costoing;
-	}
 
-
-	public void setCosto(double costo) {
-		this.costoing = costo;
-	}
 
 
 	@Override

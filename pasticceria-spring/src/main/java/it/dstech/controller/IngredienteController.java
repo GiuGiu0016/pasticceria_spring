@@ -20,8 +20,9 @@ public class IngredienteController {
 	
 //	Registrazione Ingrediente e salvataggio nel repository.
 	
-	@GetMapping("registraIngrediente")
-	public String registraIngredienteForm(Ingrediente ingrediente) {
+	@GetMapping("/registraIngrediente")
+	public String registraIngredienteForm(Model model) {
+        model.addAttribute("ingrediente", new Ingrediente());
 		return "add-ingrediente";
 	}
 	

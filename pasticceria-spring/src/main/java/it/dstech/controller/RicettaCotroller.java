@@ -39,7 +39,7 @@ public class RicettaCotroller {
         for (Ingrediente ingrediente : ricetta.getListaIngredienti()) {
         	for (Ingrediente ingredienteRepo : ingredienteRepository.findAll()) {
         		if(ingrediente.getNome().equals(ingredienteRepo.getNome())) {
-        			costo += ingrediente.getCosto();
+        			costo += ingrediente.getCostoing();
         		}else {
         			return "add-ingrediente";
         		}
