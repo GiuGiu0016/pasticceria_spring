@@ -1,8 +1,5 @@
 package it.dstech.controller;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
 import it.dstech.model.Ingrediente;
 import it.dstech.model.Ricetta;
 import it.dstech.repositories.IngredienteRepository;
@@ -42,17 +38,17 @@ public class RicettaCotroller {
 	}
 	
 	
-	@GetMapping(value = "/checkedIngrediente")
-	public String checkedIngrediente(Model model) {
-	    boolean checked = false;
-	    model.addAttribute("checked", checked);
-	    return "sample-checkbox";
-	}
-	
     @PostMapping("/addricetta")
-    public String addRicetta(Ricetta ricetta, int[] ingredienteId, BindingResult result, Model model) {
+    public String addRicetta(int[] ingredienteId, BindingResult result, Model model) {
     	
-
+		Ricetta ricetta = (Ricetta) model.getAttribute("ricetta");
+    	for (Ingrediente ingrediente : ingredienteRepository.findAll()) {
+    		for (int idChecked : ingredienteId) {
+    			if(ingrediente.getId() == idChecked) {
+    				ricetta.getListaIngredienti().add(ingrediente);
+    			}
+    		}
+    	}
     	
     	if (result.hasErrors()) {
             return "add-ricetta";
@@ -72,6 +68,8 @@ public class RicettaCotroller {
         model.addAttribute("ricetta", ricettaRepository.findAll());
         return "index";
     }
+    
+    
     
 //  Modifica l'ricetta
     
