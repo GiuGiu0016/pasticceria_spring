@@ -1,5 +1,8 @@
 package it.dstech.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,7 +50,13 @@ public class RicettaCotroller {
 	}
 	
     @PostMapping("/addricetta")
-    public String addRicetta(Ricetta ricetta, BindingResult result, Model model) {
+    public String addRicetta(Ricetta ricetta, int[]ingredienteId, BindingResult result, Model model) {
+    	
+    	//List<Ingrediente> asList = Arrays.asList((Ingrediente[]) model.getAttribute("nome"));
+    	
+		//ricetta.getListaIngredienti().addAll(asList);
+    	
+    	
     	if (result.hasErrors()) {
             return "add-ricetta";
         }

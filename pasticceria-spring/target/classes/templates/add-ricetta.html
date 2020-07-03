@@ -39,7 +39,7 @@
                              <th:block th:each="ingrediente : ${listaIngredienti}">
      							<div class="form-group col-md-6">
          						<td th:text="${ingrediente.nome}">${ingrediente.nome}</td>
-         						      <input id="nome" type="checkbox" th:checked="${checked}>
+         					      <input name="ingredienteId" th:value="${ingrediente.id}" type="checkbox" th:checked="${checked}">
    							 </th:block>
    							</div>
                         </div>
