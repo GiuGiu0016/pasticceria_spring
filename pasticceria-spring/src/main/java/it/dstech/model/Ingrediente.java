@@ -28,7 +28,9 @@ public class Ingrediente {
 	}
 
 
-	public Ingrediente() {}
+	public Ingrediente() {
+		super();
+	}
 
 
 	public Ingrediente(long id, String nome, double costo) {

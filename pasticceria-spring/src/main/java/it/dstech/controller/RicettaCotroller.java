@@ -50,12 +50,9 @@ public class RicettaCotroller {
 	}
 	
     @PostMapping("/addricetta")
-    public String addRicetta(Ricetta ricetta, int[]ingredienteId, BindingResult result, Model model) {
+    public String addRicetta(Ricetta ricetta, int[] ingredienteId, BindingResult result, Model model) {
     	
-    	//List<Ingrediente> asList = Arrays.asList((Ingrediente[]) model.getAttribute("nome"));
-    	
-		//ricetta.getListaIngredienti().addAll(asList);
-    	
+
     	
     	if (result.hasErrors()) {
             return "add-ricetta";

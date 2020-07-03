@@ -15,10 +15,8 @@ public class Cliente {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-	
+    private long id;	
 	private String nome;
-	
 	private String cognome;
 	
 	@OneToMany
@@ -63,6 +61,4 @@ public class Cliente {
 		return "Cliente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", listaOrdinazioni="
 				+ listaOrdinazioni + "]";
 	}
-	
-	
 }
