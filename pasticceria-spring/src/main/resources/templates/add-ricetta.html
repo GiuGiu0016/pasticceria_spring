@@ -32,10 +32,6 @@
                                 <label for="descrizione" class="col-form-label">Descrizione</label>
                                 <input type="text" th:field="*{descrizione}"  id="descrizione" placeholder="Descrizione">
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="costoRicetta" class="col-form-label">Costo ricetta</label>
-                                <input type="text" th:field="*{costoRicetta}"  id="costoRicetta" placeholder="Costo">
-                            </div>
                              <th:block th:each="ingrediente : ${listaIngredienti}">
      							<div class="form-group col-md-6">
          						<td th:text="${ingrediente.nome}">${ingrediente.nome}</td>

@@ -44,6 +44,9 @@ public class RicettaCotroller {
     @PostMapping("/addricetta")
     public String addRicetta(Ricetta ricetta, long[] ingredienteId, BindingResult result, Model model) {
     	
+    	if (result.hasErrors()) {
+            return "add-ricetta";
+        }
     	List<Ingrediente> ingredienti = new ArrayList<Ingrediente>();
     	Ingrediente ingredienteSelezionato = new Ingrediente();
     	
@@ -55,15 +58,26 @@ public class RicettaCotroller {
     	}
     	ricetta.setListaIngredienti(ingredienti);
     	
-    	if (result.hasErrors()) {
-            return "add-ricetta";
-        }
+    	calcoloCosto(ricetta);
 
         ricettaRepository.save(ricetta);
         model.addAttribute("ricetta", ricettaRepository.findAll());
         return "index-amm";
     }
     
+    
+  public void calcoloCosto(Ricetta ricetta) {
+	double costo = 0;
+    for (Ingrediente ingrediente : ricetta.getListaIngredienti()) {
+        for (Ingrediente ingredienteRepo : ingredienteRepository.findAll()) {
+            if(ingrediente.getNome().equalsIgnoreCase(ingredienteRepo.getNome())) {
+                costo += ingrediente.getCostoing();
+            }
+        }
+    }
+    	ricetta.setCostoRicetta((costo*110)/100);
+	}
+
 //  Modifica l'ricetta
     
     @GetMapping("/editRicetta/{id}")
