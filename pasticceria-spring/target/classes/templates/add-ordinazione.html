@@ -24,10 +24,11 @@
                                 <label for="cognome" class="col-form-label">Cognome</label>
                                 <input type="text" th:field="*{cliente.cognome}"  id="cognome" placeholder="Cognome">
                             </div>
-							<div class="form-group col-md-6">
-                                <label for="dolce" class="col-form-label">Dolce</label>
-                                <input type="text" th:field="*{cliente.dolce}"  id="dolce" placeholder="Ordinazione">
-                            </div>
+                             <th:block th:each="dolce : ${listaDolci}">
+     							<div class="form-group col-md-6">
+         						<td th:text="${dolce.nome}">${dolce.nome}</td>
+         					      <input name="listaDolci" th:value="${dolce.nome}" type="checkbox" th:checked="${checked}">
+   							 </th:block>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mt-5">

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import it.dstech.model.Dolce;
 import it.dstech.repositories.DolceRepository;
+import it.dstech.repositories.RicettaRepository;
 
 @Controller
 public class DolceController {
@@ -18,10 +19,16 @@ public class DolceController {
 	@Autowired
 	private DolceRepository dolceRepository;
 	
+	@Autowired
+	private RicettaRepository ricettaRepository;
+	
 //	Registrazione dolce e salvataggio nel repository.
 	
-	@GetMapping("registraDolce")
-	public String registraDolceForm(Dolce dolce) {
+	@GetMapping("/registraDolce")
+	public String registraDolceForm(Model model) {
+		//model.addAttribute("listaDolci", dolceRepository.findAll());
+		model.addAttribute("listaRicette", ricettaRepository.findAll());
+		model.addAttribute("dolce", new Dolce());
 		return "add-dolce";
 	}
 	

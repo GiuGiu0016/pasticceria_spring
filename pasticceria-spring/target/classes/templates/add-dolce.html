@@ -21,13 +21,16 @@
                                 <input type="text" th:field="*{nome}"  id="nome" placeholder="Nome">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="ricetta" class="col-form-label">Ricetta</label>
-                                <input type="text" th:field="*{ricetta}"  id="ricetta" placeholder="ricetta">
-                            </div>
-                            <div class="form-group col-md-6">
                                 <label for="quantita" class="col-form-label">Quantita</label>
                                 <input type="text" th:field="*{quantita}"  id="quantita" placeholder="quantita">
                             </div>
+                            <div class="container">
+                             <th:block th:each="ricetta : ${listaRicette}">
+     							<div class="form-group col-md-6">
+         						<td th:text="${ricetta.nome}">${ricetta.nome}</td>
+         					      <input name="listaRicette" th:value="${ricetta.nome}" type="checkbox" th:checked="${checked}">
+   							 </th:block>
+							</div>
                             <div class="form-group col-md-6">
                                 <label for="costoDolce" class="col-form-label">Costo</label>
                                 <input type="text" th:field="*{costoDolce}"  id="costoDolce" placeholder="costoDolce">

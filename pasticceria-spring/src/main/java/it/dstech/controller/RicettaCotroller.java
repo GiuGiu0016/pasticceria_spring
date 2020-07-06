@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import it.dstech.model.Ingrediente;
 import it.dstech.model.Ricetta;
@@ -54,29 +53,16 @@ public class RicettaCotroller {
 				ingredienti.add(ingredienteSelezionato);
 			}
     	}
-    	
     	ricetta.setListaIngredienti(ingredienti);
     	
     	if (result.hasErrors()) {
             return "add-ricetta";
         }
-        double costo = 0;
-        for (Ingrediente ingrediente : ricetta.getListaIngredienti()) {
-        	for (Ingrediente ingredienteRepo : ingredienteRepository.findAll()) {
-        		if(ingrediente.getNome().equals(ingredienteRepo.getNome())) {
-        			costo += ingrediente.getCostoing();
-        		}else {
-        			return "create-ingrediente";
-        		}
-        	}
-		}
-        ricetta.setCostoRicetta((costo*110)/100);
+
         ricettaRepository.save(ricetta);
         model.addAttribute("ricetta", ricettaRepository.findAll());
-        return "index";
+        return "index-amm";
     }
-    
-    
     
 //  Modifica l'ricetta
     
