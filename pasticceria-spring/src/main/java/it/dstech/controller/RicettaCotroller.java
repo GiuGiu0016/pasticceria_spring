@@ -1,5 +1,8 @@
 package it.dstech.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.servlet.ModelAndView;
+
 import it.dstech.model.Ingrediente;
 import it.dstech.model.Ricetta;
 import it.dstech.repositories.IngredienteRepository;
@@ -37,18 +42,19 @@ public class RicettaCotroller {
 		return "add-ingrediente";
 	}
 	
-	
     @PostMapping("/addricetta")
-    public String addRicetta(int[] ingredienteId, BindingResult result, Model model) {
+    public String addRicetta(Ricetta ricetta, int[] ingredienteId, BindingResult result, Model model) {
     	
-		Ricetta ricetta = (Ricetta) model.getAttribute("ricetta");
+    	List<Ingrediente> ingredienti = new ArrayList<Ingrediente>();
+    	
     	for (Ingrediente ingrediente : ingredienteRepository.findAll()) {
     		for (int idChecked : ingredienteId) {
     			if(ingrediente.getId() == idChecked) {
-    				ricetta.getListaIngredienti().add(ingrediente);
+    				ingredienti.add(ingrediente);
     			}
     		}
     	}
+    	ricetta.setListaIngredienti(ingredienti);
     	
     	if (result.hasErrors()) {
             return "add-ricetta";
@@ -59,7 +65,7 @@ public class RicettaCotroller {
         		if(ingrediente.getNome().equals(ingredienteRepo.getNome())) {
         			costo += ingrediente.getCostoing();
         		}else {
-        			return "add-ingrediente";
+        			return "create-ingrediente";
         		}
         	}
 		}
