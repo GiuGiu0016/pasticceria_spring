@@ -43,17 +43,18 @@ public class RicettaCotroller {
 	}
 	
     @PostMapping("/addricetta")
-    public String addRicetta(Ricetta ricetta, int[] ingredienteId, BindingResult result, Model model) {
+    public String addRicetta(Ricetta ricetta, long[] ingredienteId, BindingResult result, Model model) {
     	
     	List<Ingrediente> ingredienti = new ArrayList<Ingrediente>();
+    	Ingrediente ingredienteSelezionato = new Ingrediente();
     	
-    	for (Ingrediente ingrediente : ingredienteRepository.findAll()) {
-    		for (int idChecked : ingredienteId) {
-    			if(ingrediente.getId() == idChecked) {
-    				ingredienti.add(ingrediente);
-    			}
-    		}
+    	for (long id : ingredienteId) {
+    		if (ingredienteRepository.findById(id).isPresent()) {
+    			ingredienteSelezionato = ingredienteRepository.findById(id).get();
+				ingredienti.add(ingredienteSelezionato);
+			}
     	}
+    	
     	ricetta.setListaIngredienti(ingredienti);
     	
     	if (result.hasErrors()) {
